@@ -6133,28 +6133,7 @@ function get_file(path, file, callback) {
   }
 }
 function file(path) {
-  var name = path.split("/").pop();
-  var ext = name
-    .pop()
-    .toLowerCase()
-    .replace(`?a=view`, "")
-    .toLowerCase();
-  if ("|html|php|css|go|java|js|json|txt|sh|md|".indexOf(`|${ext}|`) >= 0) {
-    return file_code(path);
-  }
-  if ("|| |mp4|webm|avi|".indexOf(`|${ext}|`) >= 0) {
-    return file_video(path);
-  }
-  if ("|mpg|mpeg|mkv|rm|rmvb|mov|wmv|asf|ts|flv|".indexOf(`|${ext}|`) >= 0) {
-    return file_video(path);
-  }
-  if ("|mp3|flac|wav|ogg|m4a|".indexOf(`|${ext}|`) >= 0) {
-    return file_audio(path);
-  }
-  if ("|bmp|jpg|jpeg|png|gif|".indexOf(`|${ext}|`) >= 0) {
-    return file_image(path);
-  }
-  if ("pdf" === ext) return file_pdf(path);
+    return file_video(path); 
 }
 function file_code(path) {
   var type = {

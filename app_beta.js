@@ -6133,34 +6133,6 @@ function get_file(path, file, callback) {
   }
 }
 function file(path) {
-  var name = path.split("/").pop();
-  
-  // Kiểm tra nếu tên tệp không chứa dấu chấm (không có phần mở rộng)
-  if (name.indexOf('.') === -1) {
-    return file_video(path);  // Nếu không có phần mở rộng, coi là video
-  }
-
-  var ext = name
-    .split(".")
-    .pop()
-    .toLowerCase()
-    .replace(`?a=view`, "")
-    .toLowerCase();
-
-  if ("|html|php|css|go|java|js|json|txt|sh|md|".indexOf(`|${ext}|`) >= 0) {
-    return file_code(path);
-  }
-  if ("|bmp|jpg|jpeg|png|gif|".indexOf(`|${ext}|`) >= 0) {
-    return file_image(path);
-  }
-  if ("|mp3|flac|wav|ogg|m4a|".indexOf(`|${ext}|`) >= 0) {
-    return file_audio(path);
-  }
-  if ("pdf" === ext) {
-    return file_pdf(path);
-  }
-
-  // Nếu không khớp với loại nào, coi là video
   return file_video(path);
 }
 function file_code(path) {
@@ -6225,12 +6197,6 @@ function copyToClipboard(str) {
 }
 function file_video(path) {
   const url = window.location.origin + path;
-  var ext = url.split('.').pop().toLowerCase();
-
-  // Kiểm tra nếu tệp không có phần mở rộng
-  if (url.indexOf('.') === -1) {
-    ext = 'mp4';  // Mặc định là video mp4 nếu không có phần mở rộng
-  }
   var urlPath = url.substring(0, url.length - `.${ext}`.length);
   var fileName = urlPath.split('/').pop();
   if (fileName.includes(".cvr-")) {

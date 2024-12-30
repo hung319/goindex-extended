@@ -6225,7 +6225,12 @@ function copyToClipboard(str) {
 }
 function file_video(path) {
   const url = window.location.origin + path;
-  var ext = url.split('.').pop().toLowerCase().toLowerCase();
+  var ext = url.split('.').pop().toLowerCase();
+
+  // Kiểm tra nếu tệp không có phần mở rộng
+  if (url.indexOf('.') === -1) {
+    ext = 'mp4';  // Mặc định là video mp4 nếu không có phần mở rộng
+  }
   var urlPath = url.substring(0, url.length - `.${ext}`.length);
   var fileName = urlPath.split('/').pop();
   if (fileName.includes(".cvr-")) {
